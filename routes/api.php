@@ -3,8 +3,8 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-use App\Http\Controller\StudentsController;
-use App\Http\Controller\TeachersController;
+use App\Http\Controllers\StudentsController;
+use App\Http\Controllers\TeachersController;
 
 /*
 |--------------------------------------------------------------------------
