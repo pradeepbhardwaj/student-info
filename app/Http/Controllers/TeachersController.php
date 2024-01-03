@@ -10,71 +10,69 @@ class TeachersController extends Controller
 {
     
     /**
-     * List all the students
+     * List all the teachers
      */
     public function index()
     {
-        $query = student::all();
+        $query = teacher::all();
         return response()->json($query); 
     }
 
     /**
-     * Create stuents info
+     * Create teachers info
      * 
      * @string all the variables
      */
     public function create(Request $request)
     {
-        $student = new student;
-        $student->firstName = $request->get("firstName");
-        $student->lastName = $request->get("lastName");
-        $student->rollNumber = $request->get("rollNumber");
-        $student->grade = $request->get("grade");
+        $teacher = new teacher;
+        $teacher->teacherName = $request->get("teacherName");
+        $teacher->class = $request->get("class");
+        $teacher->teacherUniqueId = $request->get("teacherUniqueId");
 
-        $student->save();
+        $teacher->save();
 
         return response()->json("Record created successfully.");
     }
 
     /**
-     * Create stuents info
+     * Create teachers info
      * 
      * @string all the variables
      */
     public function update(Request $request)
     {
-        student::where("id", $request->get("student_id"))->update([
-            "firstName" => $request->get("firstName"),
-            "lastName" => $request->get("lastName"),
-            "rollNumber" => $request->get("rollNumber"),
-            "grade" => $request->get("grade"), 
+        teacher::where("id", $request->get("teacher_id"))->update([
+            "teacherName" => $request->get("teacherName"),
+            "class" => $request->get("class"),
+            "teacherUniqueId" => $request->get("teacherUniqueId")
         ]);
 
         return response()->json("Record updated successfully.");
     }
 
     /**
-     * Delete stuents info
+     * Delete teachers info
      * 
      * @string all the variables
      */
     public function delete(Request $request)
     {
-        student::where("id", $request->get("student_id"))->delete(); //This will delete the entry from the table
-        student::where("id", $request->get("student_id"))->update(["delete_flag" => 1 ]); // Entry will not delete from the table but we will consider the record to be deleetd i.e Soft Delete. We should follow this practice        
+        teacher::where("id", $request->get("teacher_id"))->delete(); //This will delete the entry from the table
+        teacher::where("id", $request->get("teacher_id"))->update(["delete_flag" => 1 ]); // Entry will not delete from the table but we will consider the record to be deleetd i.e Soft Delete. We should follow this practice        
 
         return response()->json("Record deleted successfully.");
     }
 
 
     /**
-     * Search students
+     * Search teachers
      * 
      * @id
      */
     public function search($id)
     {
-        $query = student::where("id", $id)->first();
+        $query = teacher::where("id", $id)->first();
         echo $query;
         // return response()->json($query); 
     }
